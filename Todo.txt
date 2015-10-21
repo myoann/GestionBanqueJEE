@@ -1,7 +1,8 @@
 Vous devez rendre le TP4 complet avec les ajouts suivants:
-Template avec joli Layout, logo, etc...
 1 = flo
 2 = yo 
+
+1->Template avec joli Layout, logo, etc...
 
 1->Beaucoup de comptes et beaucoup d'opérations (table des opérations aussi en Lazy Layout)
  
@@ -9,7 +10,7 @@ Template avec joli Layout, logo, etc...
  
 1->Lazy loading des comptes, essayer de faire marcher le tri et les filtres (par colonne, global)
 
-1->Afficher les soldes négatifs en rouge (cf projet Goualmi)
+2->Afficher les soldes négatifs en rouge (cf projet Goualmi)
  
 2->Avoir des comptes Epargne et des comptes courants
 
