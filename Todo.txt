@@ -1,0 +1,34 @@
+Vous devez rendre le TP4 complet avec les ajouts suivants:
+Template avec joli Layout, logo, etc...
+1 = flo
+2 = yo 
+
+1->Beaucoup de comptes et beaucoup d'opérations (table des opérations aussi en Lazy Layout)
+ 
+1->On ne peut accèder à rien tant qu'on est pas loggué. Gérer la connexion comme vu en cours (cf le projet JSFLoginPassword) avec un JSF bean en SessionScoped (penser à le mettre Serializable et avoir la librairie CDI dans le projet)
+ 
+1->Lazy loading des comptes, essayer de faire marcher le tri et les filtres (par colonne, global)
+
+1->Afficher les soldes négatifs en rouge (cf projet Goualmi)
+ 
+2->Avoir des comptes Epargne et des comptes courants
+
+	Pour les dégourdis: trouver un système pour que les comptes épargne s'incrémentent toutes les XXX secondes en appliquant le taux d'épargne (EJB timers tester avec NetBeans..., PrimeFaces AjaxCore/Poll, etc.) 
+ 
+2->Avoir un système ergonomique pour transférer de l'argent (par exemple: champ avec auto completion de PrimeFaces)
+ 
+1->Utiliser les ViewParams quand on navigue d'une page à l'autre, utiliser SessionScoped uniquement pour l'authentification (login/password)
+ 
+2->Système ergonomique pour supprimer des comptes (selection de lignes et menu contextuel click droit cf PrimeFaces datatable/selection ou joli bouton avec icone de poubelle). Utiliser un widget de dialogue PrimeFaces pur confirmation Oui/Non.
+ 
+2->Joli menu sur la gauche, par exemple avec des panels Primefaces en accordéon
+ 
+1+2->Obligation d'utiliser au moins 5 composants PrimeFaces non vus en cours.
+
+Planning : 
+21/10/15 
+22/10/15 
+23/10/15 
+24/10/15 flo apres 13h
+25/10/15 flo avant 12h
+26/10/15
