@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+  <body>
+
+    <ui:composition template="./WEB-INF/standardTemplate.xhtml">
+
+      <ui:define name="metadata">
+        <f:metadata>
+          <f:viewParam name="idCompte" value="#{ajoutRetraitController.idCompte}"/>
+          <f:viewAction 
+                   action="#{ajoutRetraitController.chargeClient}"/>
+        </f:metadata>
+      </ui:define>
+
+      <ui:define name="content">
+        <f:view>
+          <h:form id="operation">
+            <h1><h:outputText value="Dépôt / Retrait"/></h1>
+            <h:panelGrid columns="2">
+              <h:outputLabel value="Id:" for="id" />
+              <h:inputText id="id" value="#{ajoutRetraitController.compte.id}" 
+                           title="Id" readonly="true"/>
+              <h:outputLabel value="Nom :" for="nomProprio" />
+              <h:inputText id="nomProprio" 
+                           value="#{ajoutRetraitController.compte.nomProprio}" 
+                           title="NomProprio" readonly="true"/>
+              <h:outputLabel value="Solde:" for="solde" />
+              <h:inputText id="solde" value="#{ajoutRetraitController.compte.solde}" 
+                           title="Solde" readonly="true"/>
+            </h:panelGrid>
+            
+            <h2>Effectuer un dépôt ou un retrait sur ce compte</h2>
+            <h:panelGrid columns="2">
+            <h:selectOneRadio id="ajout-retrait" 
+                              value="#{ajoutRetraitController.typeOperation}"
+                              required="true"
+                              requiredMessage="Vous devez dire si c'est un ajout ou un retrait">
+              <f:selectItem itemLabel="Déposer une somme" itemValue="depot"/>
+              <f:selectItem itemLabel="Retirer une somme" itemValue="retrait"/>
+            </h:selectOneRadio>
+            <h:message id="message-ajout-retrait" for="ajout-retrait"
+                       errorStyle="color:red"/>
+            </h:panelGrid>
+            
+            Montant :
+            <h:inputText id="montant" value="#{ajoutRetraitController.montant}"
+                         required="true"/>
+            <h:message id="message-montant" for="montant" errorStyle="color:red"/>
+            <br/>
+            <h:commandButton value="Lancer l'opération"
+                             action="#{ajoutRetraitController.operation}">
+             <f:ajax execute="ajout-retrait montant" render="solde message-montant message-ajout-retrait"/>
+            </h:commandButton>
+
+          </h:form>
+        </f:view>
+
+      </ui:define>
+
+    </ui:composition>
+
+  </body>
+</html>

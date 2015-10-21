@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="metadata">
+        
+    </ui:define>
+    <ui:define name="top">
+        
+    </ui:define>
+
+    <ui:define name="content">
+        <f:view>
+            <h2>Message</h2>
+            <h:outputLabel value="#{CompteBancaireMBean.message}"> </h:outputLabel>
+            <h2>Création d'utilisateur de test</h2>
+            <h:form>
+                <h:commandButton action="#{CompteBancaireMBean.creerComptesDeTest()}" value="Créer utilisateur de test"></h:commandButton>
+            </h:form>
+            <h2>Créditer un compte</h2>
+            <h:form>
+                <h:outputLabel value="Id du compte"></h:outputLabel>
+                <h:inputText value="#{CompteBancaireMBean.idCompteAcrediter}"></h:inputText>
+                <h:outputLabel value="solde"></h:outputLabel>
+                <h:inputText value="#{CompteBancaireMBean.soldeACrediter}"></h:inputText>
+                <h:commandButton action="#{CompteBancaireMBean.crediterCompte()}" value="Créditer"></h:commandButton>
+            </h:form>
+            <h2>Débiter un compte</h2>
+            <h:form>
+                <h:outputLabel value="Id du compte"></h:outputLabel>
+                <h:inputText value="#{CompteBancaireMBean.idCompteADebiter}"></h:inputText>
+                <h:outputLabel value="solde"></h:outputLabel>
+                <h:inputText value="#{CompteBancaireMBean.soldeADebiter}"></h:inputText>
+                <h:commandButton action="#{CompteBancaireMBean.debiterCompte()}" value="Débiter"></h:commandButton>
+            </h:form>
+             <h2>Transferer de l'argent d'un compte à l'autre</h2>
+            <h:form>
+                <h:outputLabel value="Id du compte de départ"></h:outputLabel>
+                <h:inputText value="#{CompteBancaireMBean.idCompteDepart}"></h:inputText>
+                <h:outputLabel value="Id du compte d'arrivé"></h:outputLabel>
+                <h:inputText value="#{CompteBancaireMBean.idCompteArrive}"></h:inputText>
+                <h:outputLabel value="solde"></h:outputLabel>
+                <h:inputText value="#{CompteBancaireMBean.montantATransferer}"></h:inputText>
+                <h:commandButton action="#{CompteBancaireMBean.transferSolde()}" value="Transferer"></h:commandButton>
+            </h:form>
+            <h:form>
+                <h1><h:outputText value="Liste des comptes"/></h1>
+                <p:dataTable emptyMessage="Aucun résultat" value="#{CompteBancaireMBean.lazyModel}" var="item"  paginator="true" rows="10" selectionMode="single"
+                              paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                 rowsPerPageTemplate="10,15" lazy="true"  >
+                    <p:column sortBy="#{item.id}">
+                        <f:facet name="header">
+                            <h:outputText value="Id"/>
+                        </f:facet>
+                        <h:outputText value="#{item.id}"/>
+                    </p:column>
+                    <p:column filterBy="#{item.nom}" sortBy="#{item.nom}">
+                        <f:facet name="header">
+                            <h:outputText value="Nom"/>
+                        </f:facet>
+                        <h:outputText value="#{item.nom}" />
+                    </p:column>
+                    <p:column sortBy="#{item.solde}">
+                        <f:facet name="header">
+                            <h:outputText value="Solde"/>
+                        </f:facet>
+                        <h:outputText value="#{item.solde}"/>
+                    </p:column>
+                     <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Détails des opérations"/>
+                        </f:facet>
+                            <h:link outcome="operations.xhtml" includeViewParams="true" value="Afficher opérations">
+                                <f:param name="idCompte" value="#{item.id}"/>
+                            </h:link>
+                         
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Action"/>
+                        </f:facet>
+                        
+                            <h:commandLink action="#{CompteBancaireMBean.supprimerCompte(item.id)}" value="Supprimer">
+                            </h:commandLink>
+                    </p:column>
+                    
+                    
+                </p:dataTable>
+            </h:form>
+            
+        </f:view>
+
+    </ui:define>
+
+    <ui:define name="bottom">
+        footer
+    </ui:define>
+
+</ui:composition>

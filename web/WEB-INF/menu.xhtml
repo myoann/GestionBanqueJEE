@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html">
+  <h:form id="menu">
+    <ul>
+      <li>
+      <h:link value="Page d'accueil" outcome="/index"/>
+      </li>
+      <li>
+      <h:link value="Afficher tous les comptes" outcome="/affichageComptes"/>
+      </li>
+      <li>
+      <h:link value="Transférer de l'argent entre comptes" outcome="/transfert"/>
+      </li>
+      <li>
+      <h:link value="Gestion d'un compte" outcome="/gestionComptes"/>
+      </li>
+      <li>
+      <h:link value="Créer les comptes de test" outcome="/creerComptesTest"/>
+      </li>
+    </ul>  
+  </h:form>
+</ui:composition>

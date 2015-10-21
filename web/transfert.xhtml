@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+  <body>
+
+    <ui:composition template="./WEB-INF/standardTemplate.xhtml">
+
+      <ui:define name="content">
+        <h:form id="transfert">
+          <h1>
+            Transfert d'argent entre 2 comptes.
+          </h1>
+          <h:panelGrid columns="3">
+
+            Numéro du compte source :
+            <h:inputText id="source" value="#{transfertController.sourceId}" 
+                         size="20" required="true"
+                         label="Source" >
+              <f:convertNumber />
+            </h:inputText>
+            <h:message for="source" style="color:red" />
+
+            Numéro du compte destination :
+            <h:inputText id="destination" value="#{transfertController.destinationId}" 
+                         size="20" required="true"
+                         label="Destination" >
+              <f:convertNumber />
+            </h:inputText>
+            <h:message for="destination" style="color:red" />
+            
+            Montant du transfert :
+            <h:inputText id="montant" value="#{transfertController.montant}" 
+                         size="20" required="true"
+                         label="Montant" >
+              <f:convertNumber />
+              <h:message for="montant" style="color:red" />
+            </h:inputText>
+            <h:message for="montant" style="color:red" />
+            
+          </h:panelGrid>
+          <h:commandButton action="#{transfertController.transferer()}" 
+                           value="Lancer le transfert"/>
+        </h:form>
+      </ui:define>
+
+    </ui:composition>
+
+  </body>
+</html>
