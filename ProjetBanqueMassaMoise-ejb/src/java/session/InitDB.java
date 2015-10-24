@@ -10,6 +10,7 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import static session.GestionnaireDeCompteBancaire.TABNOM;
 
 /**
  *
@@ -24,6 +25,9 @@ public class InitDB {
     @PostConstruct
     public void InitDB(){
        System.out.println("#### BD REMPLIE ###");
-       gc.creer1000Comptes();
+       gc.creer2000Comptes();
+       gc.generer10000Operations();
+      
+      
     }
 }

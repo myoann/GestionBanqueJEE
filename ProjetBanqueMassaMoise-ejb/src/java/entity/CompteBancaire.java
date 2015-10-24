@@ -31,12 +31,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name="CompteBancaire")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "CompteBancaire.findAll", query = "SELECT c FROM CompteBancaire c order by c.id ASC")
+    @NamedQuery(name = "CompteBancaire.findAll", query = "SELECT c FROM CompteBancaire c order by c.id ASC"),
+    @NamedQuery(name = "CompteBancaire.count", query = "SELECT count(c) FROM CompteBancaire c ")
 })
 public class CompteBancaire implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idCompte")
     private Long id;
     @Column(name="solde")
@@ -137,12 +138,14 @@ public class CompteBancaire implements Serializable {
     }
   
     public void retirer(double montant) {
-      if (montant < solde) {
+     /* if (montant < solde) {
         solde -= montant;
         this.addOperation("Compte débité", montant);
       } else {
         throw new EJBException();
-      }
+      }*/
+        solde -= montant;
+        this.addOperation("Compte débité", montant);
     }
     public void addOperation(String description, double solde){
         OperationBancaire op = new OperationBancaire(description, solde);

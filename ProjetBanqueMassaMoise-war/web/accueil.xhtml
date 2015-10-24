@@ -17,9 +17,13 @@
         <f:view>
             <h2>Message</h2>
             <h:outputLabel value="#{CompteBancaireMBean.message}"> </h:outputLabel>
-            <h2>Création d'utilisateur de test</h2>
+            <h2>Création de 4 utilisateurs de test</h2>
             <h:form>
                 <h:commandButton action="#{CompteBancaireMBean.creerComptesDeTest()}" value="Créer utilisateur de test"></h:commandButton>
+            </h:form>
+            <h2>Générer 10000 opérations</h2>
+            <h:form>
+                <h:commandButton action="#{CompteBancaireMBean.genener10000Operations()}" value="Générer"></h:commandButton>
             </h:form>
             <h2>Créditer un compte</h2>
             <h:form>
@@ -97,7 +101,6 @@
     </ui:define>
 
     <ui:define name="bottom">
-        footer
     </ui:define>
 
 </ui:composition>

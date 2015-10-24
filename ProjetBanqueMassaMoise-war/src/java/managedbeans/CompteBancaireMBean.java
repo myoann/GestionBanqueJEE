@@ -315,6 +315,13 @@ public class CompteBancaireMBean implements Serializable {
             Logger.getLogger(CompteBancaireMBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+    public void genener10000Operations(){
+        this.gestionnaireDeCompteBancaire.generer10000Operations();
+          try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("accueil.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(CompteBancaireMBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
    
 }
