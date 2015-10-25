@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="metadata">
+        
+    </ui:define>
+    <ui:define name="top">
+        
+    </ui:define>
+
+    <ui:define name="content">
+        <f:view>
+             <h:form>
+                <h1><h:outputText value="Liste des comptes"/></h1>
+                <p:dataTable emptyMessage="Aucun résultat" value="#{CompteBancaireMBean.lazyModel}" var="item"  paginator="true" rows="10" selectionMode="single"
+                              paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                 rowsPerPageTemplate="10,15" lazy="true"  >
+                    <p:column sortBy="#{item.id}">
+                        <f:facet name="header">
+                            <h:outputText value="Id"/>
+                        </f:facet>
+                        <h:outputText value="#{item.id}"/>
+                    </p:column>
+                    <p:column filterBy="#{item.nom}" sortBy="#{item.nom}">
+                        <f:facet name="header">
+                            <h:outputText value="Nom"/>
+                        </f:facet>
+                        <h:outputText value="#{item.nom}" />
+                    </p:column>
+                    <p:column sortBy="#{item.solde}">
+                        <f:facet name="header">
+                            <h:outputText value="Solde"/>
+                        </f:facet>
+                        <h:outputText value="#{item.solde}"/>
+                    </p:column>
+                     <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Détails des opérations"/>
+                        </f:facet>
+                            <h:link outcome="operations.xhtml" includeViewParams="true" value="Afficher opérations">
+                                <f:param name="idCompte" value="#{item.id}"/>
+                            </h:link>
+                         
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Action"/>
+                        </f:facet>
+                        
+                            <h:commandLink action="#{CompteBancaireMBean.supprimerCompte(item.id)}" value="Supprimer">
+                            </h:commandLink>
+                    </p:column>
+                    
+                    
+                </p:dataTable>
+            </h:form>
+            
+        </f:view>
+
+    </ui:define>
+
+    <ui:define name="bottom">
+    </ui:define>
+
+</ui:composition>

@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:insert name="metadata"/>
     
@@ -16,9 +17,26 @@
     <h:body>
 
         <div id="left">
-            <ul>
-                <li><h:link outcome="accueil.xhtml" value="Accueil"></h:link></li>
-            </ul>
+            <p:accordionPanel>
+                <p:tab title="Accueil">
+                    <h:panelGrid columns="2" cellpadding="10">
+                       <!-- <p:graphicImage name="demo/images/godfather/godfather1.jpg" />-->
+                        <h:link outcome="accueil.xhtml" value="Accueil"></h:link>
+                    </h:panelGrid>
+                </p:tab>
+                <p:tab title="Liste des comptes">
+                    <h:panelGrid columns="2" cellpadding="10">
+                        <!--<p:graphicImage name="demo/images/godfather/godfather2.jpg" />-->
+                        <h:link outcome="listing.xhtml" value="Liste des comptes"/>
+                    </h:panelGrid>
+                </p:tab>
+                <p:tab title="Virement bancaire">
+                    <h:panelGrid columns="2" cellpadding="10">
+                       <!-- <p:graphicImage name="demo/images/godfather/godfather3.jpg" /> -->
+                        <h:link outcome="virement.xhtml" value="Virement bancaire"/>
+                    </h:panelGrid>
+                </p:tab>
+            </p:accordionPanel>
             <ui:insert name="top"></ui:insert>
         </div>
 
