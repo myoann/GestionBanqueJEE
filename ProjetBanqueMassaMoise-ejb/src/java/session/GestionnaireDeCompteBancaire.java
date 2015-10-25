@@ -11,10 +11,12 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Map.Entry;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
@@ -167,16 +169,28 @@ public class GestionnaireDeCompteBancaire {
     
     public List<CompteBancaire> getComptesFiltre(Map<String,Object> filters, int first, int pageSize){
         List<CompteBancaire> res = null;
-        Iterator<String> it = filters.keySet().iterator();
-        System.out.println("filters"+filters);
-        if(it.hasNext()){
-            String propriete = it.next();
-            Object valeurFiltre = filters.get(it.next());
-            if("nom".equals(propriete)){
-                System.out.println("Filtre par nom");
-
-            }  
+        System.out.println("filtres"+filters);
+        for(Entry<String, Object> entry : filters.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue().toString();
+            String r ="";
+            if(key.equals("nom")){
+               r = "SELECT c FROM CompteBancaire c WHERE c.nom LIKE '%"+value+"%'"; 
+            }
+            if(key.equals("id")){
+               r = "SELECT c FROM CompteBancaire c WHERE c.id = "+value; 
+            }
+            if(key.equals("solde")){
+               r = "SELECT c FROM CompteBancaire c WHERE c.solde = "+value; 
+            }
+            System.out.println(r);
+            Query q = this.em.createQuery(r);
+            q.setFirstResult(first);
+            q.setMaxResults(pageSize);
+            return q.getResultList();
         }
+
+          
        
         return res;
     }

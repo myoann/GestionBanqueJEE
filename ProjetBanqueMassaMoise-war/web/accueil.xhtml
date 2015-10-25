@@ -56,7 +56,7 @@
                 <p:dataTable emptyMessage="Aucun résultat" value="#{CompteBancaireMBean.lazyModel}" var="item"  paginator="true" rows="10" selectionMode="single"
                               paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
                  rowsPerPageTemplate="10,15" lazy="true"  >
-                    <p:column sortBy="#{item.id}">
+                    <p:column filterBy="#{item.id}" sortBy="#{item.id}">
                         <f:facet name="header">
                             <h:outputText value="Id"/>
                         </f:facet>
@@ -68,7 +68,7 @@
                         </f:facet>
                         <h:outputText value="#{item.nom}" />
                     </p:column>
-                    <p:column sortBy="#{item.solde}">
+                    <p:column filterBy="#{item.solde}" sortBy="#{item.solde}">
                         <f:facet name="header">
                             <h:outputText value="Solde"/>
                         </f:facet>

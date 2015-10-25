@@ -8,7 +8,7 @@ Vous devez rendre le TP4 complet avec les ajouts suivants:
  
 1->On ne peut accèder à rien tant qu'on est pas loggué. Gérer la connexion comme vu en cours (cf le projet JSFLoginPassword) avec un JSF bean en SessionScoped (penser à le mettre Serializable et avoir la librairie CDI dans le projet)
  
-1->Lazy loading des comptes, essayer de faire marcher le tri et les filtres (par colonne, global)
+1->Lazy loading des comptes, essayer de faire marcher le tri et les filtres (par colonne, global) (ok)
 
 2->Afficher les soldes négatifs en rouge (cf projet Goualmi)
  
