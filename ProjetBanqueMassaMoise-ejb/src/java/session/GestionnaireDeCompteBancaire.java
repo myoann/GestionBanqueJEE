@@ -6,9 +6,13 @@
 package session;
 
 import entity.CompteBancaire;
+import entity.OperationBancaire;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
@@ -59,19 +63,17 @@ public class GestionnaireDeCompteBancaire {
     }
     public void crediterCompte(Long id, double montant){
         CompteBancaire c = this.em.find(CompteBancaire.class, id);
-         System.out.println("crediter find "+c);
         c.deposer(montant);
         
     }
     public void debiterCompte(Long id, double montant){
         CompteBancaire c = this.em.find(CompteBancaire.class, id);
-        System.out.println("debiter find "+c);
+       
         c.retirer(montant);
        
     }
     
     public void transferer(Long id1, Long id2, double montant){
-        System.out.println("id1->"+id1+" id2->"+id2);
         this.debiterCompte(id1, montant); 
         this.crediterCompte(id2, montant);
     }
@@ -103,11 +105,15 @@ public class GestionnaireDeCompteBancaire {
     }
     
     public void creerOperationsComptes(Long id1, Long id2){
-        DecimalFormat df = new DecimalFormat();
-        df.setMaximumFractionDigits(2);
-        df.setMinimumFractionDigits(2);
-        df.setDecimalSeparatorAlwaysShown(true);
-        this.transferer(id1, id2, Math.random()*1000);//Double.parseDouble(df.format(Math.random()*1000)));
+        this.transferer(id1, id2, this.round(Math.random()*1000+1,2));
+    }
+    
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
     }
     public List<CompteBancaire> getComptesTrie(String champ, String order, int depart, int nb){
         String orderValue = "";
@@ -137,9 +143,12 @@ public class GestionnaireDeCompteBancaire {
         return q.getResultList();
     }
     
-    public void generer10000Operations(){
+    public void generer100000Operations(){
         int nbCompte = ((Long) this.em.createNamedQuery("CompteBancaire.count").getSingleResult()).intValue();
-         for(int i = 0; i<10000; i++){
+        System.out.println("--------Création des opérations de test-------"); 
+        for(int i = 0; i<10000; i++){
+           if(i%10000==0)
+                System.out.println(i+"opérations créées");
            int indice1 = (int)(Math.random()*nbCompte)+1;
            int indice2 = indice1;
            //pour ne pas avoir le meme indice
@@ -148,6 +157,13 @@ public class GestionnaireDeCompteBancaire {
            }
         this.creerOperationsComptes(new Long(indice1) ,new Long(indice2));
        }
+          System.out.println("--------Fin de la création des opérations de test-------"); 
+    }
+    public List<OperationBancaire> getOperations(Long id,int start, int nb){
+        Query q = em.createNamedQuery("select e from idCompte c, in(c.operations) where c.idCompte=:id");
+        q.setFirstResult(start);
+        q.setMaxResults(nb);
+        return q.getResultList();
     }
     
     
