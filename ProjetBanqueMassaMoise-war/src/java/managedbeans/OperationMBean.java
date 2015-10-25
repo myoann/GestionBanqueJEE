@@ -14,6 +14,8 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
+import lazy.LazyCompteDataModel;
+import lazy.LazyOperationModel;
 import session.GestionnaireDeCompteBancaire;
 
 /**
@@ -29,6 +31,16 @@ public class OperationMBean implements Serializable {
 
     private List<OperationBancaire> operationList; 
     private Long idCompte;
+
+    private LazyOperationModel lazyModel;
+
+    public LazyOperationModel getLazyModel() {
+        return lazyModel;
+    }
+
+    public void setLazyModel(LazyOperationModel lazyModel) {
+        this.lazyModel = lazyModel;
+    }
 
     public GestionnaireDeCompteBancaire getGestionnaireDeCompteBancaire() {
         return gestionnaireDeCompteBancaire;
@@ -75,10 +87,13 @@ public class OperationMBean implements Serializable {
 
     }
     
-    public List<OperationBancaire> getOperations(){
-        CompteBancaire c = this.gestionnaireDeCompteBancaire.getCompte(this.idCompte);
+    public LazyOperationModel getOperations(){
+        /*CompteBancaire c = this.gestionnaireDeCompteBancaire.getCompte(this.idCompte);
         this.operationList = (List<OperationBancaire>) c.getOperations();
-        return this.operationList;
+        return this.operationList;*/
+        this.lazyModel = new LazyOperationModel(this.gestionnaireDeCompteBancaire);
+        this.lazyModel.setIdCompteCourant(this.idCompte);
+        return this.lazyModel;
     }
    
     

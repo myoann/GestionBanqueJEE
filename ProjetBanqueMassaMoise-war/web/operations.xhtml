@@ -22,7 +22,9 @@
             </ui:define>
 
             <ui:define name="content">
-                <p:dataTable emptyMessage="Aucune opération" value="#{OperationMBean.operationList}" var="item" >
+                <p:dataTable emptyMessage="Aucune opération" value="#{OperationMBean.getOperations()}" var="item"
+                 paginator="true" rows="10" selectionMode="single" paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                 rowsPerPageTemplate="10,15" lazy="true"  >
                    <p:column>
                         <f:facet name="header">
                             <h:outputText value="Date"/>

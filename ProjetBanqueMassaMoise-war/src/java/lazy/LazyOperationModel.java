@@ -26,39 +26,40 @@ public class LazyOperationModel extends LazyDataModel<OperationBancaire> {
         super();
         this.gc = gc;
     }
+    private Long idCompteCourant;
+
+    /**
+     * Get the value of idCompteCourant
+     *
+     * @return the value of idCompteCourant
+     */
+    public Long getIdCompteCourant() {
+        return idCompteCourant;
+    }
+
+    /**
+     * Set the value of idCompteCourant
+     *
+     * @param idCompteCourant new value of idCompteCourant
+     */
+    public void setIdCompteCourant(Long idCompteCourant) {
+        this.idCompteCourant = idCompteCourant;
+    }
+
      public LazyOperationModel (){
          super();
     }
      
     @Override
     public List<OperationBancaire> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String,Object> filters) {
-        System.out.println("[LazyCompteDataModel.load] debut "+first+ " fin "+ pageSize);
-        //filter
-       /* if (filters != null) {
-                for (Iterator<String> it = filters.keySet().iterator(); it.hasNext();) {
-                    try {
-                        String filterProperty = it.next();
-                        Object filterValue = filters.get(filterProperty);
-                        String fieldValue = String.valueOf(Compt.getClass().getField(filterProperty).get(car));
- 
-                        if(filterValue == null || fieldValue.startsWith(filterValue.toString())) {
-                            match = true;
-                    }
-                    else {
-                            match = false;
-                            break;
-                        }
-                    } catch(Exception e) {
-                        match = false;
-                    }
-                }
-            }*/
-        //sort
+        System.out.println("[LazyOperationDataModel.load] debut "+first+ " fin "+ pageSize);
+        return this.gc.getOperations(this.idCompteCourant, first, pageSize);
+       /* //sort
         if(sortField != null){
             return null;//getComptesTrie(sortField,sortOrder.name(),first,pageSize);
         }else{
             return null;//this.gc.getComptes(first,pageSize);
-        }
+        }*/
       
        
     }

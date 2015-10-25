@@ -44,10 +44,11 @@ public class CompteBancaire implements Serializable {
     private double solde;
     @Column(name="nom")
     private String nom;
-    @OneToMany(cascade={CascadeType.ALL}, fetch=FetchType.EAGER)
+    //fetch=FetchType.EAGER)
+    @OneToMany(cascade={CascadeType.ALL}, fetch=FetchType.LAZY)
     @OrderBy("dateOperation ASC")
     private Collection<OperationBancaire> operations = new ArrayList<>();
-
+    
     public Collection<OperationBancaire> getOperations() {
         return operations;
     }
@@ -81,6 +82,7 @@ public class CompteBancaire implements Serializable {
     public void setSolde(double solde) {
         this.solde = solde;
     }
+    
 
   
 
@@ -158,4 +160,5 @@ public class CompteBancaire implements Serializable {
         return "entity.CompteBancaire[ id=" + id + " ]";
     }
     
+ 
 }

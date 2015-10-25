@@ -11,8 +11,10 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
@@ -105,16 +107,12 @@ public class GestionnaireDeCompteBancaire {
     }
     
     public void creerOperationsComptes(Long id1, Long id2){
-        this.transferer(id1, id2, this.round(Math.random()*1000+1,2));
+        double rand = (int)(Math.random()*1000+1);
+        rand+=((int)(Math.random()*2))*0.5;
+        this.transferer(id1, id2, rand);
     }
     
-    public static double round(double value, int places) {
-        if (places < 0) throw new IllegalArgumentException();
-        long factor = (long) Math.pow(10, places);
-        value = value * factor;
-        long tmp = Math.round(value);
-        return (double) tmp / factor;
-    }
+   
     public List<CompteBancaire> getComptesTrie(String champ, String order, int depart, int nb){
         String orderValue = "";
         if(order.equals("ASCENDING")) {
@@ -143,11 +141,11 @@ public class GestionnaireDeCompteBancaire {
         return q.getResultList();
     }
     
-    public void generer100000Operations(){
+    public void generer10000Operations(){
         int nbCompte = ((Long) this.em.createNamedQuery("CompteBancaire.count").getSingleResult()).intValue();
         System.out.println("--------Création des opérations de test-------"); 
         for(int i = 0; i<10000; i++){
-           if(i%10000==0)
+           if(i%1000==0)
                 System.out.println(i+"opérations créées");
            int indice1 = (int)(Math.random()*nbCompte)+1;
            int indice2 = indice1;
@@ -157,6 +155,7 @@ public class GestionnaireDeCompteBancaire {
            }
         this.creerOperationsComptes(new Long(indice1) ,new Long(indice2));
        }
+         System.out.println("10000 opérations créées");
           System.out.println("--------Fin de la création des opérations de test-------"); 
     }
     public List<OperationBancaire> getOperations(Long id,int start, int nb){
@@ -164,6 +163,22 @@ public class GestionnaireDeCompteBancaire {
         q.setFirstResult(start);
         q.setMaxResults(nb);
         return q.getResultList();
+    }
+    
+    public List<CompteBancaire> getComptesFiltre(Map<String,Object> filters, int first, int pageSize){
+        List<CompteBancaire> res = null;
+        Iterator<String> it = filters.keySet().iterator();
+        System.out.println("filters"+filters);
+        if(it.hasNext()){
+            String propriete = it.next();
+            Object valeurFiltre = filters.get(it.next());
+            if("nom".equals(propriete)){
+                System.out.println("Filtre par nom");
+
+            }  
+        }
+       
+        return res;
     }
     
     
