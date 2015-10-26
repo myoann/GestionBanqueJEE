@@ -65,13 +65,13 @@ public class LazyOperationModel extends LazyDataModel<OperationBancaire> {
     }
     @Override
     public int getRowCount() {
-        return this.gc.getNbComptes();
+        return this.gc.getNbOperations(this.idCompteCourant);
     }
     
-    /*@Override
-    public Object getRowKey(CompteBancaire c) {
-        return c.getId();
-    }*/
+    @Override
+    public Object getRowKey(OperationBancaire o) {
+        return o.getId();
+    }
     
     
 }

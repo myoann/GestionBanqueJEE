@@ -161,10 +161,18 @@ public class GestionnaireDeCompteBancaire {
           System.out.println("--------Fin de la création des opérations de test-------"); 
     }
     public List<OperationBancaire> getOperations(Long id,int start, int nb){
-        Query q = em.createNamedQuery("select e from idCompte c, in(c.operations) where c.idCompte=:id");
+        String r = "select Object(o) from CompteBancaire as c, in(c.operations) as o where c.id="+id;
+        System.out.println(r);
+        Query q = em.createQuery(r);
         q.setFirstResult(start);
         q.setMaxResults(nb);
         return q.getResultList();
+    }
+    public int getNbOperations(Long id){
+        String r = "select count(o) from CompteBancaire as c, in(c.operations) as o where c.id="+id;
+        System.out.println(r);
+        Query q = this.em.createQuery(r);
+        return ((Long) q.getSingleResult()).intValue();
     }
     
     public List<CompteBancaire> getComptesFiltre(Map<String,Object> filters, int first, int pageSize){
