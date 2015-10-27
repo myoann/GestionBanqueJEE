@@ -15,31 +15,46 @@
 
     <ui:define name="content">
         <f:view>
-            <h2>Créditer un compte</h2>
+            
             <h:form>
-                <h:outputLabel value="Id du compte" for="IdCompte"></h:outputLabel>
-                <p:autoComplete id="IdCompte" value="#{CompteBancaireMBean.idCompteAcrediter}" completeMethod="#{CompteBancaireMBean.completeText}" />
-                <!--<h:inputText value="#{CompteBancaireMBean.idCompteAcrediter}"></h:inputText>-->
-                <h:outputLabel value="solde"></h:outputLabel>
-                <p:inputText value="#{CompteBancaireMBean.soldeACrediter}"></p:inputText>
-                <p:commandButton action="#{CompteBancaireMBean.crediterCompte()}" value="Créditer"></p:commandButton>
+                <p:panel id="panelCredit" header="Créditer un compte" style="margin-bottom:10px; ">
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <h:outputLabel value="Id du compte" for="IdCompte"></h:outputLabel>
+                        <p:autoComplete id="IdCompte" value="#{CompteBancaireMBean.idCompteAcrediter}" completeMethod="#{CompteBancaireMBean.completeText}" />
+                
+                        <h:outputLabel value="solde"></h:outputLabel>
+                        <p:inputText value="#{CompteBancaireMBean.soldeACrediter}"></p:inputText>
+                    </h:panelGrid>
+                </p:panel>
+                <p:commandButton icon="fa fa-fw fa-edit" action="#{CompteBancaireMBean.crediterCompte()}" value="Créditer"></p:commandButton>
             </h:form> 
-            <h2>Débiter un compte</h2>
             <h:form>
-                <h:outputLabel value="Id du compte" for="IdCompte"></h:outputLabel>
-                <p:autoComplete id="IdCompte" value="#{CompteBancaireMBean.idCompteADebiter}" completeMethod="#{CompteBancaireMBean.completeText}" />
-                <h:outputLabel value="solde"></h:outputLabel>
-                <p:inputText value="#{CompteBancaireMBean.soldeADebiter}"></p:inputText>
+                <p:panel id="panelDebit" header="Débiter un compte" style="margin-bottom:10px; ">
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <h:outputLabel value="Id du compte" for="IdCompte"></h:outputLabel>
+                        <p:autoComplete id="IdCompte" value="#{CompteBancaireMBean.idCompteADebiter}" completeMethod="#{CompteBancaireMBean.completeText}" />
+                
+                        <h:outputLabel value="solde"></h:outputLabel>
+                        <p:inputText value="#{CompteBancaireMBean.soldeADebiter}"></p:inputText>
+                    </h:panelGrid>
+                </p:panel>
                 <p:commandButton action="#{CompteBancaireMBean.debiterCompte()}" value="Débiter"></p:commandButton>
             </h:form>
-             <h2>Transferer de l'argent d'un compte à l'autre</h2>
-            <h:form>
-                <h:outputLabel value="Id du compte de départ" for="IdCompteDepart"></h:outputLabel>
-                <p:autoComplete id="IdCompte" value="#{CompteBancaireMBean.idCompteDepart}" completeMethod="#{CompteBancaireMBean.completeText}" />
-                <h:outputLabel value="Id du compte d'arrivé" for="IdCompteArrive"></h:outputLabel>
-                <p:autoComplete id="IdCompteArrive" value="#{CompteBancaireMBean.idCompteArrive}" completeMethod="#{CompteBancaireMBean.completeText}" />
-                <h:outputLabel value="solde"></h:outputLabel>
-                <p:inputText value="#{CompteBancaireMBean.montantATransferer}"></p:inputText>
+             
+             <h:form>
+                 <p:panel id="panelTransf" header="Transfer d'argent" style="margin-bottom:10px;">
+                    <h:panelGrid columns="2" cellpadding="5">
+
+                        <h:outputLabel value="Id du compte de départ" for="IdCompteDepart"></h:outputLabel>
+                        <p:autoComplete id="IdCompte" value="#{CompteBancaireMBean.idCompteDepart}" completeMethod="#{CompteBancaireMBean.completeText}" />
+
+                        <h:outputLabel value="Id du compte d'arrivé" for="IdCompteArrive"></h:outputLabel>
+                        <p:autoComplete id="IdCompteArrive" value="#{CompteBancaireMBean.idCompteArrive}" completeMethod="#{CompteBancaireMBean.completeText}" />
+
+                        <h:outputLabel value="solde"></h:outputLabel>
+                        <p:inputText value="#{CompteBancaireMBean.montantATransferer}"></p:inputText>
+                    </h:panelGrid>
+                 </p:panel>
                 <p:commandButton action="#{CompteBancaireMBean.transferSolde()}" value="Transferer"></p:commandButton>
             </h:form>           
         </f:view>

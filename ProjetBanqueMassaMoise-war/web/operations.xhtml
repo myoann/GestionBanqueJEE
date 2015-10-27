@@ -22,6 +22,7 @@
             </ui:define>
 
             <ui:define name="content">
+                <h3> Opération pour l'utilisateur #{OperationMBean.idCompte}</h3>
                 <p:dataTable emptyMessage="Aucune opération" value="#{OperationMBean.getOperations()}" var="item"
                  paginator="true" rows="10" selectionMode="single" paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
                  rowsPerPageTemplate="10,15" lazy="true"  >

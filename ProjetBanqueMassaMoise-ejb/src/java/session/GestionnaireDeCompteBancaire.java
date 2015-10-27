@@ -147,7 +147,7 @@ public class GestionnaireDeCompteBancaire {
         System.out.println("--------Création des opérations de test-------"); 
         for(int i = 0; i<10000; i++){
            if(i%1000==0)
-                System.out.println(i+"opérations créées");
+                System.out.println(i+" opérations créées");
            int indice1 = (int)(Math.random()*nbCompte)+1;
            int indice2 = indice1;
            //pour ne pas avoir le meme indice
@@ -169,7 +169,6 @@ public class GestionnaireDeCompteBancaire {
     }
     public int getNbOperations(Long id){
         String r = "select count(o) from CompteBancaire as c, in(c.operations) as o where c.id="+id;
-        System.out.println(r);
         Query q = this.em.createQuery(r);
         return ((Long) q.getSingleResult()).intValue();
     }

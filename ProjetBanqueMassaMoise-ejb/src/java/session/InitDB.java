@@ -24,10 +24,10 @@ public class InitDB {
     private GestionnaireDeCompteBancaire gc;
     @PostConstruct
     public void InitDB(){
-       System.out.println("#### BD REMPLIE ###");
+       System.out.println("#### BD EN CREATION ###");
        gc.creer2000Comptes();
        gc.generer10000Operations();
-      
+       System.out.println("#### BD REMPLIE ###");
       
     }
 }
