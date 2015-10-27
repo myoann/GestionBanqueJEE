@@ -20,6 +20,7 @@ import session.GestionnaireDeCompteBancaire;
  */
 public class LazyCompteDataModel extends LazyDataModel<CompteBancaire> {
     private GestionnaireDeCompteBancaire gc;
+    private List<CompteBancaire> buf;
     
     public LazyCompteDataModel (GestionnaireDeCompteBancaire gc){
         super();
@@ -32,7 +33,7 @@ public class LazyCompteDataModel extends LazyDataModel<CompteBancaire> {
     @Override
     public List<CompteBancaire> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String,Object> filters) {
         System.out.println("[LazyCompteDataModel.load] debut "+first+ " fin "+ pageSize);
-        List<CompteBancaire> ret = null;
+        this.buf = null;
         //filter
        /* if (filters != null) {
                 for (Iterator<String> it = filters.keySet().iterator(); it.hasNext();) {
@@ -57,16 +58,16 @@ public class LazyCompteDataModel extends LazyDataModel<CompteBancaire> {
         
         if(!filters.isEmpty()){
             
-             ret = this.gc.getComptesFiltre(filters,first,pageSize);
+             this.buf = this.gc.getComptesFiltre(filters,first,pageSize);
         }
         else if(sortField != null){
-            ret = this.gc.getComptesTrie(sortField,sortOrder.name(),first,pageSize);
+            this.buf = this.gc.getComptesTrie(sortField,sortOrder.name(),first,pageSize);
         }
         else{
-            ret = this.gc.getComptes(first,pageSize);
+            this.buf = this.gc.getComptes(first,pageSize);
         
         }
-        return ret;
+        return this.buf;
        
     }
     @Override
@@ -77,6 +78,14 @@ public class LazyCompteDataModel extends LazyDataModel<CompteBancaire> {
     @Override
     public Object getRowKey(CompteBancaire c) {
         return c.getId();
+    }
+     @Override
+    public CompteBancaire getRowData(String rowKey) {
+        for(CompteBancaire c : this.buf) {
+            if(c.getId().equals(rowKey))
+                return c;
+        }
+        return null;
     }
     
     

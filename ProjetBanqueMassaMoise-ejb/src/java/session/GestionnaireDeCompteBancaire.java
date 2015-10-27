@@ -72,7 +72,6 @@ public class GestionnaireDeCompteBancaire {
     }
     public void debiterCompte(Long id, double montant){
         CompteBancaire c = this.em.find(CompteBancaire.class, id);
-       
         c.retirer(montant);
        
     }
@@ -162,7 +161,7 @@ public class GestionnaireDeCompteBancaire {
     }
     public List<OperationBancaire> getOperations(Long id,int start, int nb){
         String r = "select Object(o) from CompteBancaire as c, in(c.operations) as o where c.id="+id;
-        System.out.println(r);
+        //System.out.println(r);
         Query q = em.createQuery(r);
         q.setFirstResult(start);
         q.setMaxResults(nb);
