@@ -323,5 +323,13 @@ public class CompteBancaireMBean implements Serializable {
             Logger.getLogger(CompteBancaireMBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public String colorrow(double solde) {
+      if (solde < 0) {
+        return "TableRowRed";
+      } else {
+          return "TableRowGray";
+      }
+   } 
    
 }
