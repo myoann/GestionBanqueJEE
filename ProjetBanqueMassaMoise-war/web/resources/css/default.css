@@ -31,3 +31,12 @@ a:link:hover, a:visited:hover  {
   font-weight : bold;
   text-decoration : underline;
 }
+.TableRowRed {
+   background-color: red !important;
+   font : bold;
+   color: black; 
+}
+ 
+.TableRowGray {
+   background-color: white !important;
+}
