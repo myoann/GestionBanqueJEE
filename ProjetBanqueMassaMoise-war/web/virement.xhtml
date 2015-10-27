@@ -17,29 +17,30 @@
         <f:view>
             <h2>Créditer un compte</h2>
             <h:form>
-                <h:outputLabel value="Id du compte"></h:outputLabel>
-                <h:inputText value="#{CompteBancaireMBean.idCompteAcrediter}"></h:inputText>
+                <h:outputLabel value="Id du compte" for="IdCompte"></h:outputLabel>
+                <p:autoComplete id="IdCompte" value="#{CompteBancaireMBean.idCompteAcrediter}" completeMethod="#{CompteBancaireMBean.completeText}" />
+                <!--<h:inputText value="#{CompteBancaireMBean.idCompteAcrediter}"></h:inputText>-->
                 <h:outputLabel value="solde"></h:outputLabel>
-                <h:inputText value="#{CompteBancaireMBean.soldeACrediter}"></h:inputText>
-                <h:commandButton action="#{CompteBancaireMBean.crediterCompte()}" value="Créditer"></h:commandButton>
-            </h:form>
+                <p:inputText value="#{CompteBancaireMBean.soldeACrediter}"></p:inputText>
+                <p:commandButton action="#{CompteBancaireMBean.crediterCompte()}" value="Créditer"></p:commandButton>
+            </h:form> 
             <h2>Débiter un compte</h2>
             <h:form>
-                <h:outputLabel value="Id du compte"></h:outputLabel>
-                <h:inputText value="#{CompteBancaireMBean.idCompteADebiter}"></h:inputText>
+                <h:outputLabel value="Id du compte" for="IdCompte"></h:outputLabel>
+                <p:autoComplete id="IdCompte" value="#{CompteBancaireMBean.idCompteADebiter}" completeMethod="#{CompteBancaireMBean.completeText}" />
                 <h:outputLabel value="solde"></h:outputLabel>
-                <h:inputText value="#{CompteBancaireMBean.soldeADebiter}"></h:inputText>
-                <h:commandButton action="#{CompteBancaireMBean.debiterCompte()}" value="Débiter"></h:commandButton>
+                <p:inputText value="#{CompteBancaireMBean.soldeADebiter}"></p:inputText>
+                <p:commandButton action="#{CompteBancaireMBean.debiterCompte()}" value="Débiter"></p:commandButton>
             </h:form>
              <h2>Transferer de l'argent d'un compte à l'autre</h2>
             <h:form>
-                <h:outputLabel value="Id du compte de départ"></h:outputLabel>
-                <h:inputText value="#{CompteBancaireMBean.idCompteDepart}"></h:inputText>
-                <h:outputLabel value="Id du compte d'arrivé"></h:outputLabel>
-                <h:inputText value="#{CompteBancaireMBean.idCompteArrive}"></h:inputText>
+                <h:outputLabel value="Id du compte de départ" for="IdCompteDepart"></h:outputLabel>
+                <p:autoComplete id="IdCompte" value="#{CompteBancaireMBean.idCompteDepart}" completeMethod="#{CompteBancaireMBean.completeText}" />
+                <h:outputLabel value="Id du compte d'arrivé" for="IdCompteArrive"></h:outputLabel>
+                <p:autoComplete id="IdCompteArrive" value="#{CompteBancaireMBean.idCompteArrive}" completeMethod="#{CompteBancaireMBean.completeText}" />
                 <h:outputLabel value="solde"></h:outputLabel>
-                <h:inputText value="#{CompteBancaireMBean.montantATransferer}"></h:inputText>
-                <h:commandButton action="#{CompteBancaireMBean.transferSolde()}" value="Transferer"></h:commandButton>
+                <p:inputText value="#{CompteBancaireMBean.montantATransferer}"></p:inputText>
+                <p:commandButton action="#{CompteBancaireMBean.transferSolde()}" value="Transferer"></p:commandButton>
             </h:form>           
         </f:view>
 

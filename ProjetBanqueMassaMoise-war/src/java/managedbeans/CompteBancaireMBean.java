@@ -331,5 +331,14 @@ public class CompteBancaireMBean implements Serializable {
           return "TableRowGray";
       }
    } 
+    
+   public List<String> completeText(String query) {
+        List<String> results = new ArrayList<String>();
+        for(int i = 0; i < 10; i++) {
+            results.add(query + i);
+        }
+         
+        return results;
+    }
    
 }
