@@ -39,15 +39,16 @@ public class CompteBancaire implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idCompte")
-    private Long id;
+    public Long id;
     @Column(name="solde")
-    private double solde;
+    public double solde;
     @Column(name="nom")
     private String nom;
-    //fetch=FetchType.EAGER)
     @OneToMany(cascade={CascadeType.ALL}, fetch=FetchType.LAZY)
+    // A ESSAYER :     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @OrderBy("dateOperation ASC")
     private Collection<OperationBancaire> operations = new ArrayList<>();
+    public String description;
     
     public Collection<OperationBancaire> getOperations() {
         return operations;
