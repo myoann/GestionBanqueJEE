@@ -22,10 +22,16 @@ import static session.GestionnaireDeCompteBancaire.TABNOM;
 public class InitDB {
     @EJB
     private GestionnaireDeCompteBancaire gc;
+    @EJB
+    private GestionnaireUtilisateur gu;
     @PostConstruct
     public void InitDB(){
        System.out.println("#### BD EN CREATION ###");
+       System.out.println("#### Création des utilisateurs ###");
+       gu.genererUtilisateurs();
+       System.out.println("#### Création des comptes ###");
        gc.creer2000Comptes();
+       System.out.println("#### Création des opérations ###");
        gc.generer10000Operations();
        System.out.println("#### BD REMPLIE ###");
       

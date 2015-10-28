@@ -189,7 +189,7 @@ public class GestionnaireDeCompteBancaire {
             if(key.equals("solde")){
                r = "SELECT c FROM CompteBancaire c WHERE c.solde = "+value; 
             }
-            System.out.println(r);
+       
             Query q = this.em.createQuery(r);
             q.setFirstResult(first);
             q.setMaxResults(pageSize);
