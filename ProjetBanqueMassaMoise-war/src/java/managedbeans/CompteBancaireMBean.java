@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -221,30 +222,20 @@ public class CompteBancaireMBean implements Serializable {
     public void crediterCompte(){
         this.gestionnaireDeCompteBancaire.crediterCompte(this.idCompteAcrediter, this.soldeACrediter);
         //this.compteBancaireList = this.gestionnaireDeCompteBancaire.getAllComptes();
-        try {
-            
-            FacesContext.getCurrentInstance().getExternalContext().redirect("accueil.xhtml");
-        } catch (IOException ex) {
-            Logger.getLogger(CompteBancaireMBean.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        addMessage("Confirmation", "Le compte a bien été crédité.");
+
     }
     public void debiterCompte(){
         System.out.println(this.message);
         this.gestionnaireDeCompteBancaire.debiterCompte(this.getIdCompteADebiter(), this.soldeADebiter);
+        addMessage("Confirmation", "Le compte a bien été débité.");
         //this.compteBancaireList = this.gestionnaireDeCompteBancaire.getAllComptes();
-        try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("accueil.xhtml");
-        } catch (IOException ex) {
-            Logger.getLogger(CompteBancaireMBean.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+
     }
     public void transferSolde(){
         this.gestionnaireDeCompteBancaire.transferer(this.idCompteDepart, this.idCompteArrive, this.montantATransferer);
-        try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("accueil.xhtml");
-        } catch (IOException ex) {
-            Logger.getLogger(CompteBancaireMBean.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        addMessage("Confirmation", "Le transfert a bien été effectué.");
+
     }
     
 
@@ -334,11 +325,17 @@ public class CompteBancaireMBean implements Serializable {
     
    public List<String> completeText(String query) {
         List<String> results = new ArrayList<String>();
+        List<String> results2 = gestionnaireDeCompteBancaire.getIdComptes();
         for(int i = 0; i < 10; i++) {
             results.add(query + i);
         }
          
         return results;
+    }
+   
+   public void addMessage(String summary, String detail) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
+        FacesContext.getCurrentInstance().addMessage(null, message);
     }
    
 }

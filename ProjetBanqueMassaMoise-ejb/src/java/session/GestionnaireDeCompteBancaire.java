@@ -11,12 +11,15 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
@@ -93,6 +96,13 @@ public class GestionnaireDeCompteBancaire {
     
     public CompteBancaire getCompte(Long id) {
         return em.find(CompteBancaire.class, id);
+    }
+    public List<String> getIdComptes(){
+        Query q = this.em.createQuery("select c.id from CompteBancaire c");
+        List<Long> oldList = q.getResultList();
+        List<String> strings = Arrays.asList(oldList.toString().replaceAll("\\[(.*)\\]", "$1").split(", "));
+       // List<String> strings = (List<String>) oldList.stream().map(Object::toString).collect(Collectors.toList());
+        return strings;
     }
     public int getNbComptes(){
         Query q = this.em.createQuery("select count(c) from CompteBancaire c");
