@@ -19,8 +19,8 @@
             <h:form>
                 <p:growl id="message" showDetail="true" /> 
                
-                <p:panel id="panelCredit" header="Créditer un compte" style="margin-bottom:10px; ">
-                    <h:panelGrid columns="2" cellpadding="5">
+                <p:panel id="panelCredit" header="Créditer un compte" style="margin-bottom:15px;">
+                    <h:panelGrid columns="2" cellpadding="2" styleClass="panelCenter">
                         <h:outputLabel value="Id du compte" for="IdCompte"></h:outputLabel>
                         <p:autoComplete id="IdCompte" value="#{CompteBancaireMBean.idCompteAcrediter}" completeMethod="#{CompteBancaireMBean.completeText}" />
                 
@@ -36,7 +36,7 @@
                 <p:growl id="message" showDetail="true" /> 
 
                 <p:panel id="panelDebit" header="Débiter un compte" style="margin-bottom:10px; ">
-                    <h:panelGrid columns="2" cellpadding="5">
+                    <h:panelGrid columns="2" cellpadding="5" styleClass="panelCenter">
                         <h:outputLabel value="Id du compte" for="IdCompte"></h:outputLabel>
                         <p:autoComplete id="IdCompte" value="#{CompteBancaireMBean.idCompteADebiter}" completeMethod="#{CompteBancaireMBean.completeText}" />
                 
@@ -53,7 +53,7 @@
                  <p:growl id="message" showDetail="true" /> 
                  
                  <p:panel id="panelTransf" header="Transfert d'argent" style="margin-bottom:10px;">
-                    <h:panelGrid columns="2" cellpadding="5">
+                    <h:panelGrid columns="2" cellpadding="5" styleClass="panelCenter">
 
                         <h:outputLabel value="Id du compte de départ" for="IdCompteDepart"></h:outputLabel>
                         <p:autoComplete id="IdCompte" value="#{CompteBancaireMBean.idCompteDepart}" completeMethod="#{CompteBancaireMBean.completeText}" />
@@ -69,8 +69,8 @@
                     <p:confirm header="Confirmation" message="Êtes-vous sûr?" icon="ui-icon-alert" />
                 </p:commandButton>
                     <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                        <p:commandButton value="Oui" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                        <p:commandButton value="Non" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                     </p:confirmDialog> 
             </h:form>           
         </f:view>
