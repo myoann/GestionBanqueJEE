@@ -8,7 +8,8 @@
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <ui:define name="metadata">
-        
+         <f:viewParam name="loginC" value="#{connexionMBean.loginUtilisateurCourant}"/>
+         <f:viewParam name="mdpC" value="#{connexionMBean.mdpCourant}"/>
     </ui:define>
 
     <ui:define name="top">
@@ -16,20 +17,21 @@
     </ui:define>
 
     <ui:define name="content">
-        <h3>Page de connexion </h3>
+        
         <h:form>
+            <h3>Page de connexion</h3>
             <h:panelGrid id="grid" columns="3" cellpadding="5">
                 <p:outputLabel for="login" value="Login" />
-                <p:inputText id="login" required="true" />
+                <p:inputText id="login" required="true" requiredMessage="Veuillez saisir votre identifiant" value="#{connexionMBean.loginUtilisateurCourant}"/>
                 <p:message for="login" />
-
+                
                 <p:outputLabel for="mdp" value="Text" />
-                <p:password id="mdp" required="true" />
+                <p:password id="mdp" required="true" requiredMessage="Veuillez saisir votre mot de passe" value="#{connexionMBean.mdpCourant}"/>
                 <p:message for="mdp" display="text" />
 
             </h:panelGrid>
-
-            <p:commandButton id="submitButton" value="Se connecter" update="grid" />
+            <p:commandButton id="submitButton" value="Se connecter" update="grid" action="#{connexionMBean.seConnecter()}"/>
+          
         </h:form>
         
     </ui:define>

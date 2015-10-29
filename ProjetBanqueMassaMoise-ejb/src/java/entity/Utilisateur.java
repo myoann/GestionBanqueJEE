@@ -6,22 +6,25 @@
 package entity;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author Florian
  */
 @Entity
+@Table(name="Utilisateur")
 public class Utilisateur implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    
+    @Column(name="login")
+    private String login;
+    @Column(name="mdp")
     private String mdp;
 
     /**
@@ -49,7 +52,6 @@ public class Utilisateur implements Serializable {
         this.mdp = mdp;
     }
 
-    private String login;
 
     /**
      * Get the value of login
@@ -70,18 +72,12 @@ public class Utilisateur implements Serializable {
     }
 
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (login != null ? login.hashCode() : 0);
         return hash;
     }
 
@@ -92,7 +88,7 @@ public class Utilisateur implements Serializable {
             return false;
         }
         Utilisateur other = (Utilisateur) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.login == null && other.login != null) || (this.login != null && !this.login.equals(other.login))) {
             return false;
         }
         return true;
@@ -100,7 +96,7 @@ public class Utilisateur implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Utilisateur[ id=" + id + " ]";
+        return "entity.Utilisateur[ login=" + login + " ]";
     }
     
 }

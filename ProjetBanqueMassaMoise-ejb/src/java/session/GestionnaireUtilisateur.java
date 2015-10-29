@@ -10,6 +10,7 @@ import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -39,4 +40,15 @@ public class GestionnaireUtilisateur {
     public void creerUtilisateur(Utilisateur u) {
        em.persist(u);
    }
+    public Utilisateur seConnecter(String login, String mdp){
+        String r = "select u from Utilisateur u where u.login='"+login+"' and u.mdp='"+mdp+"'";
+        System.out.println(r);
+        Query q = this.em.createQuery(r);
+        q.setMaxResults(1);
+        if(q.getResultList().isEmpty()){
+            return null;
+        }
+        Utilisateur u = (Utilisateur) q.getSingleResult();
+        return u;
+    }
 }
