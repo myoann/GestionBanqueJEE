@@ -35,6 +35,7 @@ public class CompteBancaireMBean implements Serializable {
     private List<CompteBancaire> compteBancaireList; 
     private Long idCompteAcrediter;
     private String message;
+    private CompteBancaire selectedCompte;
 
     private LazyCompteDataModel lazyModel;
 
@@ -297,11 +298,25 @@ public class CompteBancaireMBean implements Serializable {
         this.idCompteDepart = idCompteDepart;
     }
     
+    public CompteBancaire getSelectedCompte() {
+        System.out.println("GET : " + selectedCompte);
+        return selectedCompte; 
+    }
+    
+    public void setSelectedCompte(CompteBancaire selectedCompte) { 
+        this.selectedCompte = selectedCompte; 
+    } 
+    
+    public void supprimerUnCompte() {
+        this.gestionnaireDeCompteBancaire.supprimerCompter(this.selectedCompte.getId()); 
+        selectedCompte = null; 
+    }
+    
     public void supprimerCompte(Long id){
         System.out.println("id->"+id);
         this.gestionnaireDeCompteBancaire.supprimerCompter(id);
-         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("accueil.xhtml");
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("listing.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(CompteBancaireMBean.class.getName()).log(Level.SEVERE, null, ex);
         }

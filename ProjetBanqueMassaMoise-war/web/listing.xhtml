@@ -16,11 +16,13 @@
     <ui:define name="content">
         <f:view>
              <h:form>
+                 <p:contextMenu for="cTable"> 
+                     <p:menuitem value="Delete" update="cTable" icon="ui-icon-close" actionListener="#{CompteBancaireMBean.supprimerUnCompte()}"/> </p:contextMenu>
                <h3><h:outputText value="Liste des comptes"/></h3>
-                <p:dataTable emptyMessage="Aucun résultat" value="#{CompteBancaireMBean.lazyModel}" var="item"  paginator="true" rows="10" selectionMode="single"
+                <p:dataTable emptyMessage="Aucun résultat" value="#{CompteBancaireMBean.lazyModel}" var="item"  paginator="true" rows="10" 
                               paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
                               rowStyleClass="#{CompteBancaireMBean.colorrow(item.solde)}"
-                 rowsPerPageTemplate="10,15" lazy="true"  >
+                              rowsPerPageTemplate="10,15" lazy="true" selection="#{CompteBancaireMBean.selectedCompte}" selectionMode="single" rowKey="#{item.id}" id="cTable">
                     <p:column filterBy="#{item.id}" sortBy="#{item.id}">
                         <f:facet name="header">
                             <h:outputText value="Id"/>
