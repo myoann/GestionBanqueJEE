@@ -21,21 +21,29 @@
             <img src="resources/logo_bnp.png" id="logo"></img>
             <p:accordionPanel>
                 <p:tab title="Accueil">
-                    <h:panelGrid columns="2" cellpadding="10">
+                    <h:panelGrid columns="1" cellpadding="0">
                        <!-- <p:graphicImage name="demo/images/godfather/godfather1.jpg" />-->
                         <h:link outcome="accueil.xhtml" value="Accueil"/>
                     </h:panelGrid>
                 </p:tab>
                 <p:tab title="Liste des comptes" >
-                    <h:panelGrid columns="2" cellpadding="10">
+                    <h:panelGrid columns="1" cellpadding="0">
                         <h:link outcome="listing.xhtml" value="Listing"/>
                         <p:graphicImage name="list.png" height="56px" width="56px" url="listing.xhtml"/>
                     </h:panelGrid>
                 </p:tab>
                 <p:tab title="Virement bancaire">
-                    <h:panelGrid columns="2" cellpadding="10">
+                    <h:panelGrid columns="1" cellpadding="0">
                        <!-- <p:graphicImage name="demo/images/godfather/godfather3.jpg" /> -->
                         <h:link outcome="virement.xhtml" value="Virement bancaire"/>
+                    </h:panelGrid>
+                </p:tab>
+                <p:tab title="Connexion">
+                    <h:panelGrid columns="1" cellpadding="0" >
+                       <!-- <p:graphicImage name="demo/images/godfather/godfather3.jpg" /> -->
+                       <h:form>
+                            <h:commandLink action="#{connexionMBean.seDeconnecter()}" value="Se déconnecter"></h:commandLink>
+                       </h:form>
                     </h:panelGrid>
                 </p:tab>
             </p:accordionPanel>

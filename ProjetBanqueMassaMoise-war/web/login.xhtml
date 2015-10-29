@@ -8,8 +8,8 @@
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <ui:define name="metadata">
-         <f:viewParam name="loginC" value="#{connexionMBean.loginUtilisateurCourant}"/>
-         <f:viewParam name="mdpC" value="#{connexionMBean.mdpCourant}"/>
+         <!--<f:viewParam name="loginC" value="#{connexionMBean.loginUtilisateurCourant}"/>
+         <f:viewParam name="mdpC" value="#{connexionMBean.mdpCourant}"/> !-->
     </ui:define>
 
     <ui:define name="top">
@@ -17,27 +17,34 @@
     </ui:define>
 
     <ui:define name="content">
-        
+       
         <h:form>
-            <h3>Page de connexion</h3>
-            <h:panelGrid id="grid" columns="3" cellpadding="5">
-                <p:outputLabel for="login" value="Login" />
-                <p:inputText id="login" required="true" requiredMessage="Veuillez saisir votre identifiant" value="#{connexionMBean.loginUtilisateurCourant}"/>
-                <p:message for="login" />
-                
-                <p:outputLabel for="mdp" value="Text" />
-                <p:password id="mdp" required="true" requiredMessage="Veuillez saisir votre mot de passe" value="#{connexionMBean.mdpCourant}"/>
-                <p:message for="mdp" display="text" />
+            <p:panel id="panel" style="border: 0 !important;">
+                <p:messages id="msgs"/>
+                <h:panelGrid id="grid" columns="3" cellpadding="5" styleClass="panelCenter" >
+                    <p:outputLabel for="login" value="Login" />
+                    <p:inputText id="login" required="true" requiredMessage="Veuillez saisir votre identifiant"  value="#{connexionMBean.loginUtilisateurCourant}" label="login">
+                        <f:validateLength minimum="2" />
+                    </p:inputText>
+                    <p:message for="login" display="icon" />
 
-            </h:panelGrid>
-            <p:commandButton id="submitButton" value="Se connecter" update="grid" action="#{connexionMBean.seConnecter()}"/>
-          
+                    <p:outputLabel for="mdp" value="Text" />
+                    <p:password id="mdp" required="true" requiredMessage="Veuillez saisir votre mot de passe" value="#{connexionMBean.mdpCourant}" label="mdp">
+                        <f:validateLength minimum="2" />
+                        <p:ajax update="msgMdp" event="keyup" />
+                    </p:password>
+                    <p:message for="mdp" id="msgMdp" display="icon">
+                    </p:message>
+
+                </h:panelGrid>
+                <p:commandButton id="submitButton" value="Se connecter" update="panel" actionListener="#{connexionMBean.seConnecter}" icon="ui-icon-check"/>
+            </p:panel>
         </h:form>
         
     </ui:define>
 
     <ui:define name="bottom">
-        bottom
+
     </ui:define>
 
 </ui:composition>

@@ -9,7 +9,7 @@
     <body>
 
         <ui:composition template="./template.xhtml">
-
+            #{connexionMBean.checkConnexion()}
             <ui:define name="metadata">
                 <f:metadata>
                     <f:viewParam name="idCompte" value="#{OperationMBean.idCompte}"></f:viewParam>

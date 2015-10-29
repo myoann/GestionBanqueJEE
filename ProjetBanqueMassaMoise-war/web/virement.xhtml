@@ -14,20 +14,18 @@
     </ui:define>
 
     <ui:define name="content">
+        #{connexionMBean.checkConnexion()}
         <f:view>
-            
             <h:form>
                 <p:growl id="message" showDetail="true" /> 
-               
-                <p:panel id="panelCredit" header="Créditer un compte" style="margin-bottom:15px;">
-                    <h:panelGrid columns="2" cellpadding="2" styleClass="panelCenter">
-                        <h:outputLabel value="Id du compte" for="IdCompte"></h:outputLabel>
-                        <p:autoComplete id="IdCompte" value="#{CompteBancaireMBean.idCompteAcrediter}" completeMethod="#{CompteBancaireMBean.completeText}" />
+                <h:panelGrid columns="2" cellpadding="2" styleClass="panelCenter">
+                    <h:outputLabel value="Id du compte" for="IdCompte"></h:outputLabel>
+                    <p:autoComplete id="IdCompte" value="#{CompteBancaireMBean.idCompteAcrediter}" completeMethod="#{CompteBancaireMBean.completeText}" />
                 
-                        <h:outputLabel value="solde"></h:outputLabel>
-                        <p:inputText value="#{CompteBancaireMBean.soldeACrediter}"></p:inputText>
-                    </h:panelGrid>
-                </p:panel>
+                    <h:outputLabel value="solde"></h:outputLabel>
+                    <p:inputText value="#{CompteBancaireMBean.soldeACrediter}"></p:inputText>
+                </h:panelGrid>
+               
                 <p:commandButton icon="fa fa-fw fa-edit" value="Créditer" actionListener="#{CompteBancaireMBean.crediterCompte()}" update="message">
                     <p:confirm header="Confirmation" message="Êtes-vous sûr?" icon="ui-icon-alert" />
                 </p:commandButton>
@@ -35,7 +33,7 @@
             <h:form>
                 <p:growl id="message" showDetail="true" /> 
 
-                <p:panel id="panelDebit" header="Débiter un compte" style="margin-bottom:10px; ">
+                
                     <h:panelGrid columns="2" cellpadding="5" styleClass="panelCenter">
                         <h:outputLabel value="Id du compte" for="IdCompte"></h:outputLabel>
                         <p:autoComplete id="IdCompte" value="#{CompteBancaireMBean.idCompteADebiter}" completeMethod="#{CompteBancaireMBean.completeText}" />
@@ -43,7 +41,7 @@
                         <h:outputLabel value="solde"></h:outputLabel>
                         <p:inputText value="#{CompteBancaireMBean.soldeADebiter}"></p:inputText>
                     </h:panelGrid>
-                </p:panel>
+                
                 <p:commandButton icon="fa fa-fw fa-edit" value="Débiter" actionListener="#{CompteBancaireMBean.debiterCompte()}" update="message">
                     <p:confirm header="Confirmation" message="Êtes-vous sûr?" icon="ui-icon-alert" />
                 </p:commandButton>
@@ -52,7 +50,7 @@
              <h:form>
                  <p:growl id="message" showDetail="true" /> 
                  
-                 <p:panel id="panelTransf" header="Transfert d'argent" style="margin-bottom:10px;">
+   
                     <h:panelGrid columns="2" cellpadding="5" styleClass="panelCenter">
 
                         <h:outputLabel value="Id du compte de départ" for="IdCompteDepart"></h:outputLabel>
@@ -64,7 +62,7 @@
                         <h:outputLabel value="solde"></h:outputLabel>
                         <p:inputText value="#{CompteBancaireMBean.montantATransferer}"></p:inputText>
                     </h:panelGrid>
-                 </p:panel>
+                 
                  <p:commandButton value="Transferer" actionListener="#{CompteBancaireMBean.transferSolde()}" update="message">
                     <p:confirm header="Confirmation" message="Êtes-vous sûr?" icon="ui-icon-alert" />
                 </p:commandButton>

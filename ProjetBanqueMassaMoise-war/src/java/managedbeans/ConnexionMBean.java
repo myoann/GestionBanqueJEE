@@ -86,5 +86,29 @@ public class ConnexionMBean implements Serializable {
                 Logger.getLogger(CompteBancaireMBean.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_INFO,"Mauvais identifiant ou mot de passe",""));
+  
     }
+    
+    public void seDeconnecter(){
+        this.estConnecte = false;
+        this.mdpCourant ="";
+        this.loginUtilisateurCourant="";
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("faces/login.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(CompteBancaireMBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void checkConnexion(){
+        if(!this.estConnecte){
+           try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("faces/login.xhtml");
+            } catch (IOException ex) {
+            Logger.getLogger(CompteBancaireMBean.class.getName()).log(Level.SEVERE, null, ex);
+            }  
+        }
+    }
+   
 }
