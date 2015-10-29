@@ -4,24 +4,35 @@ Vous devez rendre le TP4 complet avec les ajouts suivants:
 
 1->Template avec joli Layout, logo, etc... (OK)
 
-1->Beaucoup de comptes et beaucoup d'opérations (table des opérations aussi en Lazy Layout) (OK)
+1->Beaucoup de comptes et beaucoup d'opÃ©rations (table des opÃ©rations aussi en Lazy Layout) (OK)
  
-1->On ne peut accèder à rien tant qu'on est pas loggué. Gérer la connexion comme vu en cours (cf le projet JSFLoginPassword) avec un JSF bean en SessionScoped (penser à le mettre Serializable et avoir la librairie CDI dans le projet)
+1->On ne peut accÃ¨der Ã  rien tant qu'on est pas logguÃ©. GÃ©rer la connexion comme vu en cours (cf le projet JSFLoginPassword) avec un JSF bean en SessionScoped (penser Ã  le mettre Serializable et avoir la librairie CDI dans le projet)
  
 1->Lazy loading des comptes, essayer de faire marcher le tri et les filtres (par colonne, global) (OK)
 
-2->Afficher les soldes négatifs en rouge (cf projet Goualmi) (OK)
+2->Afficher les soldes nÃ©gatifs en rouge (cf projet Goualmi) (OK)
  
 2->Avoir des comptes Epargne et des comptes courants
 
-	Pour les dégourdis: trouver un système pour que les comptes épargne s'incrémentent toutes les XXX secondes en appliquant le taux d'épargne (EJB timers tester avec NetBeans..., PrimeFaces AjaxCore/Poll, etc.) 
+	Pour les dÃ©gourdis: trouver un systÃ¨me pour que les comptes Ã©pargne s'incrÃ©mentent toutes les XXX secondes en appliquant le taux d'Ã©pargne (EJB timers tester avec NetBeans..., PrimeFaces AjaxCore/Poll, etc.) 
  
-2->Avoir un système ergonomique pour transférer de l'argent (par exemple: champ avec auto completion de PrimeFaces)
+2->Avoir un systÃ¨me ergonomique pour transfÃ©rer de l'argent (par exemple: champ avec auto completion de PrimeFaces)
  
-1->Utiliser les ViewParams quand on navigue d'une page à l'autre, utiliser SessionScoped uniquement pour l'authentification (login/password)
+1->Utiliser les ViewParams quand on navigue d'une page Ã  l'autre, utiliser SessionScoped uniquement pour l'authentification (login/password)
  
-2->Système ergonomique pour supprimer des comptes (selection de lignes et menu contextuel click droit cf PrimeFaces datatable/selection ou joli bouton avec icone de poubelle). Utiliser un widget de dialogue PrimeFaces pur confirmation Oui/Non.
+2->SystÃ¨me ergonomique pour supprimer des comptes (selection de lignes et menu contextuel click droit cf PrimeFaces datatable/selection ou joli bouton avec icone de poubelle). Utiliser un widget de dialogue PrimeFaces pur confirmation Oui/Non.
  
-2->Joli menu sur la gauche, par exemple avec des panels Primefaces en accordéon
+2->Joli menu sur la gauche, par exemple avec des panels Primefaces en accordÃ©on
  
 1+2->Obligation d'utiliser au moins 5 composants PrimeFaces non vus en cours.
+
+- > accordionPanel
+- > autoComplete
+- > password
+- > message
+- > growl
+- > confirmDialog
+- > panelGrid
+- > fontAwesome
+- > 
+
