@@ -2,15 +2,15 @@ Vous devez rendre le TP4 complet avec les ajouts suivants:
 1 = flo
 2 = yo 
 
-1->Template avec joli Layout, logo, etc... (OK)
+OK->Template avec joli Layout, logo, etc... (OK)
 
-1->Beaucoup de comptes et beaucoup d'opérations (table des opérations aussi en Lazy Layout) (OK)
+OK->Beaucoup de comptes et beaucoup d'opérations (table des opérations aussi en Lazy Layout) (OK)
  
 1->On ne peut accèder à rien tant qu'on est pas loggué. Gérer la connexion comme vu en cours (cf le projet JSFLoginPassword) avec un JSF bean en SessionScoped (penser à le mettre Serializable et avoir la librairie CDI dans le projet)
  
-1->Lazy loading des comptes, essayer de faire marcher le tri et les filtres (par colonne, global) (OK)
+OK ->Lazy loading des comptes, essayer de faire marcher le tri et les filtres (par colonne, global) (OK)
 
-2->Afficher les soldes négatifs en rouge (cf projet Goualmi) (OK)
+OK->Afficher les soldes négatifs en rouge (cf projet Goualmi) (OK)
  
 2->Avoir des comptes Epargne et des comptes courants
 
@@ -22,9 +22,9 @@ Vous devez rendre le TP4 complet avec les ajouts suivants:
  
 2->Système ergonomique pour supprimer des comptes (selection de lignes et menu contextuel click droit cf PrimeFaces datatable/selection ou joli bouton avec icone de poubelle). Utiliser un widget de dialogue PrimeFaces pur confirmation Oui/Non.
  
-2->Joli menu sur la gauche, par exemple avec des panels Primefaces en accordéon
+OK ->Joli menu sur la gauche, par exemple avec des panels Primefaces en accordéon
  
-1+2->Obligation d'utiliser au moins 5 composants PrimeFaces non vus en cours.
+OK ->Obligation d'utiliser au moins 5 composants PrimeFaces non vus en cours.
 
 - > accordionPanel
 - > autoComplete
