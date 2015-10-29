@@ -16,13 +16,17 @@
     <ui:define name="content">
         <f:view>
              <h:form>
+                <p:growl id="message" showDetail="true" /> 
+
                  <p:contextMenu for="cTable"> 
                      <p:menuitem value="Delete" update="cTable" icon="ui-icon-close" actionListener="#{CompteBancaireMBean.supprimerUnCompte()}"/> </p:contextMenu>
-               <h3><h:outputText value="Liste des comptes"/></h3>
                 <p:dataTable emptyMessage="Aucun résultat" value="#{CompteBancaireMBean.lazyModel}" var="item"  paginator="true" rows="10" 
                               paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
                               rowStyleClass="#{CompteBancaireMBean.colorrow(item.solde)}"
                               rowsPerPageTemplate="10,15" lazy="true" selection="#{CompteBancaireMBean.selectedCompte}" selectionMode="single" rowKey="#{item.id}" id="cTable">
+                    <f:facet name="header">
+                        Liste des comptes
+                    </f:facet>
                     <p:column filterBy="#{item.id}" sortBy="#{item.id}">
                         <f:facet name="header">
                             <h:outputText value="Id"/>
@@ -55,8 +59,14 @@
                             <h:outputText value="Action"/>
                         </f:facet>
                         
-                            <h:commandLink action="#{CompteBancaireMBean.supprimerCompte(item.id)}"  value="Supprimer">
-                            </h:commandLink>
+                        <p:commandButton icon="fa fa-fw fa-edit" value="Supprimer" actionListener="#{CompteBancaireMBean.supprimerCompte(item.id)}">
+                            <p:confirm header="Confirmation" message="Êtes-vous sûr?" icon="ui-icon-alert" />
+                        </p:commandButton>
+                        
+                        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                            <p:commandButton value="Oui" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                            <p:commandButton value="Non" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                        </p:confirmDialog>
                     </p:column>
                     
                     
