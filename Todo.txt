@@ -16,11 +16,11 @@ OK->Afficher les soldes négatifs en rouge (cf projet Goualmi) (OK)
 
 	Pour les dégourdis: trouver un système pour que les comptes épargne s'incrémentent toutes les XXX secondes en appliquant le taux d'épargne (EJB timers tester avec NetBeans..., PrimeFaces AjaxCore/Poll, etc.) 
  
-2->Avoir un système ergonomique pour transférer de l'argent (par exemple: champ avec auto completion de PrimeFaces)
+OK->Avoir un système ergonomique pour transférer de l'argent (par exemple: champ avec auto completion de PrimeFaces)
  
 1->Utiliser les ViewParams quand on navigue d'une page à l'autre, utiliser SessionScoped uniquement pour l'authentification (login/password)
  
-2->Système ergonomique pour supprimer des comptes (selection de lignes et menu contextuel click droit cf PrimeFaces datatable/selection ou joli bouton avec icone de poubelle). Utiliser un widget de dialogue PrimeFaces pur confirmation Oui/Non.
+OK->Système ergonomique pour supprimer des comptes (selection de lignes et menu contextuel click droit cf PrimeFaces datatable/selection ou joli bouton avec icone de poubelle). Utiliser un widget de dialogue PrimeFaces pur confirmation Oui/Non.
  
 OK ->Joli menu sur la gauche, par exemple avec des panels Primefaces en accordéon
  
