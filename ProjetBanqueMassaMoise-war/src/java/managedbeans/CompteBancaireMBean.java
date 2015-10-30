@@ -315,11 +315,6 @@ public class CompteBancaireMBean implements Serializable {
     public void supprimerCompte(Long id){
         System.out.println("id->"+id);
         this.gestionnaireDeCompteBancaire.supprimerCompter(id);
-        try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("listing.xhtml");
-        } catch (IOException ex) {
-            Logger.getLogger(CompteBancaireMBean.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
     public void genener10000Operations(){
         this.gestionnaireDeCompteBancaire.generer10000Operations();

@@ -60,7 +60,7 @@
                             <h:outputText value="Action"/>
                         </f:facet>
                         
-                        <p:commandButton icon="fa fa-fw fa-edit" value="Supprimer" actionListener="#{CompteBancaireMBean.supprimerCompte(item.id)}">
+                        <p:commandButton icon="fa fa-fw fa-edit" value="Supprimer" update="cTable" actionListener="#{CompteBancaireMBean.supprimerCompte(item.id)}">
                             <p:confirm header="Confirmation" message="Êtes-vous sûr?" icon="ui-icon-alert" />
                         </p:commandButton>
                         
