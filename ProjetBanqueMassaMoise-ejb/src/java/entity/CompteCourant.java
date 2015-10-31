@@ -21,12 +21,17 @@ public class CompteCourant extends CompteBancaire implements Serializable {
     public CompteCourant() {}
     
     public CompteCourant(String nom, double solde) {
-        
+        super(nom,solde);
     }
 
     @Override
     public String toString() {
         return "entities.CompteCourant[ id=" + id + " ]";
+    }
+   
+    @Override
+    public String getNomType(){
+        return "Compte courant";
     }
     
 }

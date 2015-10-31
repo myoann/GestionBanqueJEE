@@ -6,6 +6,8 @@
 package session;
 
 import entity.CompteBancaire;
+import entity.CompteCourant;
+import entity.CompteEpargne;
 import entity.OperationBancaire;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -63,10 +65,10 @@ public class GestionnaireDeCompteBancaire {
    }
    
     public void creerComptesTest() {
-       creerCompte(new CompteBancaire("John Lennon", 150000));
-       creerCompte(new CompteBancaire("Paul McCartney", 950000));
-       creerCompte(new CompteBancaire("Ringo Starr", 20000));
-       creerCompte(new CompteBancaire("Georges Harrisson", 100000));
+       creerCompte(new CompteCourant("John Lennon", 150000));
+       creerCompte(new CompteCourant("Paul McCartney", 950000));
+       creerCompte(new CompteCourant("Ringo Starr", 20000));
+       creerCompte(new CompteCourant("Georges Harrisson", 100000));
     }
     public void crediterCompte(Long id, double montant){
         CompteBancaire c = this.em.find(CompteBancaire.class, id);
@@ -109,12 +111,19 @@ public class GestionnaireDeCompteBancaire {
         return ((Long) q.getSingleResult()).intValue();
     }
 
-    public void creer2000Comptes() {
+    public void creer2000ComptesCourant() {
         for(int i=0; i<2000; i++){
             int indice1 = (int)(Math.random()*TABNOM.length-1);
             int indice2 = (int)(Math.random()*TABPRENOMS.length-1);
-            this.creerCompte(new CompteBancaire(TABNOM[indice1]+" "+TABPRENOMS[indice2], (int)(Math.random()*10000)));
+            this.creerCompte(new CompteCourant(TABNOM[indice1]+" "+TABPRENOMS[indice2], (int)(Math.random()*10000)));
         }
+    }
+    public void creer500ComptesEpargnes(){
+       for(int i=0; i<500; i++){
+            int indice1 = (int)(Math.random()*TABNOM.length-1);
+            int indice2 = (int)(Math.random()*TABPRENOMS.length-1);
+            this.creerCompte(new CompteEpargne(TABNOM[indice1]+" "+TABPRENOMS[indice2], (int)(Math.random()*10000),0.05));
+        }  
     }
     
     public void creerOperationsComptes(Long id1, Long id2){
@@ -125,6 +134,7 @@ public class GestionnaireDeCompteBancaire {
     
    
     public List<CompteBancaire> getComptesTrie(String champ, String order, int depart, int nb){
+        
         String orderValue = "";
         if(order.equals("ASCENDING")) {
             orderValue = "ASC";
@@ -144,6 +154,9 @@ public class GestionnaireDeCompteBancaire {
             r = "select c from CompteBancaire c order by c.solde " 
                + orderValue;
             System.out.println("TRI PAR SOLDE: " + r);  
+        }else if(champ.equals("type")){
+            r= "select c from CompteBancaire c order by c.class  ";
+            System.out.println(r);
         }
         
         Query q = em.createQuery(r);
@@ -209,6 +222,15 @@ public class GestionnaireDeCompteBancaire {
           
        
         return res;
+    }
+
+    public void appliquerTaux() {
+        String r = "select c from CompteEpargne c";
+        Query q = this.em.createQuery(r);
+        List<CompteEpargne> comptes =  q.getResultList();
+        for(CompteEpargne c :comptes){
+           c.appliquerTaux();
+        }
     }
     
     

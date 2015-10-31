@@ -7,6 +7,10 @@ package entity;
 
 import entity.CompteBancaire;
 import java.io.Serializable;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
+import java.util.Locale;
 import javax.persistence.Entity;
 
 /**
@@ -26,7 +30,16 @@ public class CompteEpargne extends CompteBancaire implements Serializable {
 	}
 
 	public void appliquerTaux() {
-            solde = solde * (1 + tauxEpargne);
+            DecimalFormatSymbols otherSymbols = new DecimalFormatSymbols(Locale.UK);
+            otherSymbols.setDecimalSeparator('.');
+            otherSymbols.setGroupingSeparator('.'); 
+            DecimalFormat df = new DecimalFormat("#.##",otherSymbols);
+            df.setDecimalFormatSymbols(null);
+            double gain = solde*tauxEpargne;
+            gain = Double.valueOf(df.format(gain));
+            solde += gain;
+            this.addOperation("Application du taux "+this.tauxEpargne+" pour le compte épargne", gain);
+            System.out.println("Compte id = "+id+" solde "+solde);
 	}
 
 	public double getTauxEpargne() {
@@ -37,6 +50,11 @@ public class CompteEpargne extends CompteBancaire implements Serializable {
 
 	}
 
+        @Override
+        public String getNomType(){
+            return "Compte épargne";
+        }
+    
 	@Override 
         public String toString() {
             return "entities.CompteEpargne[ id=" + id + " ]";

@@ -55,6 +55,12 @@
                             </h:link>
                          
                     </p:column>
+                    <p:column sortBy="type">
+                        <f:facet name="header">
+                            <h:outputText value="Type"/>
+                        </f:facet>
+                               #{item.getNomType()}
+                    </p:column>
                     <p:column>
                         <f:facet name="header">
                             <h:outputText value="Action"/>
@@ -69,6 +75,7 @@
                             <p:commandButton value="Non" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                         </p:confirmDialog>
                     </p:column>
+                    
                     
                     
                 </p:dataTable>
