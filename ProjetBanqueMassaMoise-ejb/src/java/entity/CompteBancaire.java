@@ -38,8 +38,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "CompteBancaire.findAll", query = "SELECT c FROM CompteBancaire c order by c.id ASC"),
     @NamedQuery(name = "CompteBancaire.count", query = "SELECT count(c) FROM CompteBancaire c ")
 })
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "type", discriminatorType=DiscriminatorType.STRING)//, columnDefinition="type")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class CompteBancaire implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

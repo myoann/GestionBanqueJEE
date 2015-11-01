@@ -96,7 +96,7 @@ public class ConnexionMBean implements Serializable {
         this.mdpCourant ="";
         this.loginUtilisateurCourant="";
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath());
         } catch (IOException ex) {
             Logger.getLogger(CompteBancaireMBean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -104,7 +104,7 @@ public class ConnexionMBean implements Serializable {
     public void checkConnexion(){
         if(!this.estConnecte){
            try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("faces/login.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()) ;
             } catch (IOException ex) {
             Logger.getLogger(CompteBancaireMBean.class.getName()).log(Level.SEVERE, null, ex);
             }  

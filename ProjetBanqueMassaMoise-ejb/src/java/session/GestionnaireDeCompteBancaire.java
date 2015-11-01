@@ -155,7 +155,7 @@ public class GestionnaireDeCompteBancaire {
                + orderValue;
             System.out.println("TRI PAR SOLDE: " + r);  
         }else if(champ.equals("type")){
-            r= "select c from CompteBancaire c order by c.class  ";
+            r= "select c from CompteBancaire c order by c.type";
             System.out.println(r);
         }
         

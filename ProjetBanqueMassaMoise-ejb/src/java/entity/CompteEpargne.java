@@ -37,6 +37,9 @@ public class CompteEpargne extends CompteBancaire implements Serializable {
             df.setDecimalFormatSymbols(null);
             double gain = solde*tauxEpargne;
             gain = Double.valueOf(df.format(gain));
+            if(gain<0){
+                gain*=-1;
+            }
             solde += gain;
             this.addOperation("Application du taux "+this.tauxEpargne+" pour le compte épargne", gain);
             System.out.println("Compte id = "+id+" solde "+solde);
