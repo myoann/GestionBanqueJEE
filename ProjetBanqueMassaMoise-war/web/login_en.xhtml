@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./templateLogin_en.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="metadata">
+         <!--<f:viewParam name="loginC" value="#{connexionMBean.loginUtilisateurCourant}"/>
+         <f:viewParam name="mdpC" value="#{connexionMBean.mdpCourant}"/> !-->
+    </ui:define>
+
+    <ui:define name="content">
+       
+        <h:form>
+            <p:panel id="panel" style="border: 0 !important;">
+                <p:messages id="msgs"/>
+                <h:panelGrid id="grid" columns="3" cellpadding="5" styleClass="panelCenter" >
+                    <p:outputLabel for="login" value="Login" />
+                    <p:inputText id="login" required="true" requiredMessage="Enter your username"  value="#{connexionMBean.loginUtilisateurCourant}" label="login">
+                        <f:validateLength minimum="2" />
+                    </p:inputText>
+                    <p:message for="login" display="icon" />
+
+                    <p:outputLabel for="mdp" value="Text" />
+                    <p:password id="mdp" required="true" requiredMessage="Enter your password" value="#{connexionMBean.mdpCourant}" label="mdp">
+                        <f:validateLength minimum="2" />
+                        <p:ajax update="msgMdp" event="keyup" />
+                    </p:password>
+                    <p:message for="mdp" id="msgMdp" display="icon">
+                    </p:message>
+
+                </h:panelGrid>
+                <p:commandButton id="submitButton" value="Log in" update="panel" actionListener="#{connexionMBean.seConnecter}" icon="ui-icon-check"/>
+            </p:panel>
+        </h:form>
+        
+    </ui:define>
+
+    
+
+</ui:composition>

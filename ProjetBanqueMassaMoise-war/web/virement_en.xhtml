@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./template_en.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="metadata">
+        
+    </ui:define>
+    <ui:define name="top">
+        
+    </ui:define>
+
+    <ui:define name="content">
+        #{connexionMBean.checkConnexion()}
+        <f:view>
+            <h:form>
+                <p:growl id="message" showDetail="true" /> 
+                <h:panelGrid columns="2" cellpadding="2" styleClass="panelCenter">
+                    <h:outputLabel value="Account Id" for="IdCompte"></h:outputLabel>
+                    <p:autoComplete id="IdCompte" value="#{CompteBancaireMBean.idCompteAcrediter}" completeMethod="#{CompteBancaireMBean.completeText}" />
+                
+                    <h:outputLabel value="balance"></h:outputLabel>
+                    <p:inputText value="#{CompteBancaireMBean.soldeACrediter}"></p:inputText>
+                </h:panelGrid>
+               
+                <p:commandButton icon="fa fa-fw fa-edit" value="Credit" actionListener="#{CompteBancaireMBean.crediterCompte()}" update="message">
+                    <p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
+                </p:commandButton>
+            </h:form> 
+            <h:form>
+                <p:growl id="message" showDetail="true" /> 
+
+                
+                    <h:panelGrid columns="2" cellpadding="5" styleClass="panelCenter">
+                        <h:outputLabel value="Account Id" for="IdCompte"></h:outputLabel>
+                        <p:autoComplete id="IdCompte" value="#{CompteBancaireMBean.idCompteADebiter}" completeMethod="#{CompteBancaireMBean.completeText}" />
+                
+                        <h:outputLabel value="balance"></h:outputLabel>
+                        <p:inputText value="#{CompteBancaireMBean.soldeADebiter}"></p:inputText>
+                    </h:panelGrid>
+                
+                <p:commandButton icon="fa fa-fw fa-edit" value="Debit" actionListener="#{CompteBancaireMBean.debiterCompte()}" update="message">
+                    <p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
+                </p:commandButton>
+            </h:form>
+             
+             <h:form>
+                 <p:growl id="message" showDetail="true" /> 
+                 
+   
+                    <h:panelGrid columns="2" cellpadding="5" styleClass="panelCenter">
+
+                        <h:outputLabel value="Account Id to debit" for="IdCompteDepart"></h:outputLabel>
+                        <p:autoComplete id="IdCompte" value="#{CompteBancaireMBean.idCompteDepart}" completeMethod="#{CompteBancaireMBean.completeText}" />
+
+                        <h:outputLabel value="Account Id to credit" for="IdCompteArrive"></h:outputLabel>
+                        <p:autoComplete id="IdCompteArrive" value="#{CompteBancaireMBean.idCompteArrive}" completeMethod="#{CompteBancaireMBean.completeText}" />
+
+                        <h:outputLabel value="balance"></h:outputLabel>
+                        <p:inputText value="#{CompteBancaireMBean.montantATransferer}"></p:inputText>
+                    </h:panelGrid>
+                 
+                 <p:commandButton value="Transfer" actionListener="#{CompteBancaireMBean.transferSolde()}" update="message">
+                    <p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
+                </p:commandButton>
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog> 
+            </h:form>           
+        </f:view>
+
+    </ui:define>
+
+    <ui:define name="bottom">
+    </ui:define>
+
+</ui:composition>
