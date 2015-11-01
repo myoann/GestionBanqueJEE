@@ -34,4 +34,9 @@ public class CompteCourant extends CompteBancaire implements Serializable {
         return "Compte courant";
     }
     
+    @Override
+    public String getNomType_en(){
+        return "Checking account";
+    }
+    
 }

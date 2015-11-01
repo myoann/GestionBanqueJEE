@@ -57,6 +57,11 @@ public class CompteEpargne extends CompteBancaire implements Serializable {
         public String getNomType(){
             return "Compte épargne";
         }
+        
+        @Override
+        public String getNomType_en(){
+            return "Savings account";
+        }
     
 	@Override 
         public String toString() {

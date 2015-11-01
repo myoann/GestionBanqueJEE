@@ -165,6 +165,10 @@ public class CompteBancaire implements Serializable {
     public String getNomType(){
         return "Compte bancaire";
     }
+    
+    public String getNomType_en(){
+        return "Bank Account";
+    }
   
     @Override
     public String toString() {
