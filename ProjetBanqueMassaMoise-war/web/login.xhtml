@@ -23,7 +23,7 @@
                     </p:inputText>
                     <p:message for="login" display="icon" />
 
-                    <p:outputLabel for="mdp" value="Text" />
+                    <p:outputLabel for="mdp" value="Mot de passe" />
                     <p:password id="mdp" required="true" requiredMessage="Veuillez saisir votre mot de passe" value="#{connexionMBean.mdpCourant}" label="mdp">
                         <f:validateLength minimum="2" />
                         <p:ajax update="msgMdp" event="keyup" />
